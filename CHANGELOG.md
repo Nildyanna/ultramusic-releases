@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.23
+- Fixed "Requested format is not available" failures on some tracks — YouTube requires a JavaScript runtime to properly decode certain videos' audio streams, which the downloader wasn't using even when one (like Node.js) was already installed on your system.
+
 ## v1.0.22
 - Replaced the cookie-export popup (which kept freezing the app on Windows across several attempts to fix it) with a plain "🍪 Provide Cookies" button in the header — click it anytime. If you don't have an exported cookies file yet, it walks you to the browser extension that creates one; once you do, it lets you select it directly. Same outcome as the old popup, none of the freeze risk.
 
