@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.20
+- The cookie-export popup can no longer hang the app under any circumstance — it now gives up automatically after 5 minutes with no response, and clicking Stop closes it immediately. Also made the popup harder to miss (it was likely opening behind other windows, which looked exactly like a freeze).
+
 ## v1.0.19
 - Fixed the new cookie-prompt popup being able to hang the app entirely if it failed to open correctly.
 
