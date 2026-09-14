@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.19
+- Fixed the new cookie-prompt popup being able to hang the app entirely if it failed to open correctly.
+
 ## v1.0.18
 - When cookies are needed but can't be auto-extracted, the app now pauses and shows a popup with a button to get the cookie-export extension and select your exported file directly — instead of just failing and burying the reason in the log.
 
