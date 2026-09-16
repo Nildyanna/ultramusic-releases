@@ -1,5 +1,10 @@
 # UltraMusic Changelog
 
+## v1.0.26
+- **Retag Library** — new button in the header that rescans an existing music folder and fixes AlbumArtist on tracks that were downloaded before v1.0.25's tagging fix, without re-downloading anything.
+- **FLAC option** — a new Format dropdown lets you download as FLAC instead of MP3 320kbps. Note this re-encodes YouTube's source stream into a lossless container; it avoids MP3's extra lossy transcoding step but doesn't exceed the source's actual quality.
+- **Lyrics embedding** — new "Embed lyrics" checkbox (on by default) fetches and embeds plain lyrics into each downloaded track via lrclib.net, best-effort — a missing lyrics match never fails or slows down the download.
+
 ## v1.0.25
 - Fixed AlbumArtist tagging on soundtracks/compilations with guest performers — a track by a guest artist (e.g. Kenny G on a Whitney Houston soundtrack) was getting tagged with AlbumArtist = the guest, not the album's actual credited artist. This fragmented the album into separate folders/artists in Plex and similar library software. AlbumArtist is now always the album's credited artist across every track, while Artist still correctly reflects the individual track's performer.
 
