@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.25
+- Fixed AlbumArtist tagging on soundtracks/compilations with guest performers — a track by a guest artist (e.g. Kenny G on a Whitney Houston soundtrack) was getting tagged with AlbumArtist = the guest, not the album's actual credited artist. This fragmented the album into separate folders/artists in Plex and similar library software. AlbumArtist is now always the album's credited artist across every track, while Artist still correctly reflects the individual track's performer.
+
 ## v1.0.24
 - Fixed the "Provide Cookies" import silently accepting the wrong file. It now checks the file is actually a valid Netscape-format cookies.txt before saving it, and tells you right away if it isn't — instead of the file being accepted and downloads failing later with a confusing "does not look like a Netscape format cookies file" error.
 
