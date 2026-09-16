@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.27
+- Fixed the "Change Folder" button text getting clipped on some systems (font/DPI-scaling dependent) — widened the button.
+
 ## v1.0.26
 - **Retag Library** — new button in the header that rescans an existing music folder and fixes AlbumArtist on tracks that were downloaded before v1.0.25's tagging fix, without re-downloading anything.
 - **FLAC option** — a new Format dropdown lets you download as FLAC instead of MP3 320kbps. Note this re-encodes YouTube's source stream into a lossless container; it avoids MP3's extra lossy transcoding step but doesn't exceed the source's actual quality.
