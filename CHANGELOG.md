@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.31
+- Fixed the Linux `.deb` installing but then crashing immediately on launch (`ModuleNotFoundError: No module named 'version'`). The package builder never included `version.py`, even though the app imports it directly — it was left out because the file list that builds the package and the file list that computes checksums were two separate, hand-maintained copies that had drifted apart. Merged into one list so this can't happen again.
+
 ## v1.0.30
 - Fixed the Linux `.deb` failing to install entirely ("unable to create '/opt/ultramusic/ultramusic_gui.py.dpkg-new': No such file or directory"). The package builder never wrote explicit directory records into the archive, only file records — some dpkg configurations don't reliably auto-create missing parent directories from that alone. The archive now includes proper directory entries for every folder it installs into, matching what `dpkg-deb` itself produces.
 
