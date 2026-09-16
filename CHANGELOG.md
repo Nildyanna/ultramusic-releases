@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.30
+- Fixed the Linux `.deb` failing to install entirely ("unable to create '/opt/ultramusic/ultramusic_gui.py.dpkg-new': No such file or directory"). The package builder never wrote explicit directory records into the archive, only file records — some dpkg configurations don't reliably auto-create missing parent directories from that alone. The archive now includes proper directory entries for every folder it installs into, matching what `dpkg-deb` itself produces.
+
 ## v1.0.29
 - Fixed cookies randomly breaking mid-download on large batches ("does not look like a Netscape format cookies file"). yt-dlp rewrites the whole cookies file on every single track it finishes, and with 4 tracks downloading in parallel all sharing that one file, one track's write could land while another was mid-read, corrupting it. This could silently drop your signed-in session partway through a big run, making otherwise-available tracks fail. Downloads no longer trigger that rewrite — cookies still load and work exactly the same, just without the race.
 
