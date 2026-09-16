@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.28
+- Actually fixed the "Change Folder" truncation from v1.0.27 — widening the button alone wasn't the real problem. The header row had grown too crowded (five buttons plus the folder pill competing for the same row), so the last-packed element got clipped regardless of its own width. Split the header into two rows — folder path/button on top, action buttons below — so nothing gets squeezed out again as more buttons are added.
+
 ## v1.0.27
 - Fixed the "Change Folder" button text getting clipped on some systems (font/DPI-scaling dependent) — widened the button.
 
