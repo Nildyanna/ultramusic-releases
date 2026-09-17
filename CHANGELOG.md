@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.34
+- Actually fixed the "removed or deleted" false-failure bug from v1.0.33 — that fix's own recheck was the thing silently failing. It ran concurrently with several other tracks' real downloads sharing the same connection pool, so under real load the recheck request itself kept timing out, and a failed recheck was being treated the same as a confirmed-still-unavailable one — quietly recreating the exact mass-failure bug it was supposed to fix (confirmed: a real 400+ track re-run produced zero recheck-success AND zero recheck-error log lines, meaning every single recheck was erroring out invisibly). A recheck that can't complete is no longer treated as evidence of anything — it now falls through to attempting the real download, where a genuinely unavailable track still gets caught and reported correctly by the app's existing download-failure classification.
+
 ## v1.0.33
 - Fixed real songs getting reported as "removed or deleted" when they weren't. YouTube Music's album-listing API occasionally marks a track unavailable even though it plays fine (confirmed: a ~0.3% false-positive rate even under normal conditions), and that rate can spike much higher during a transient bad response — a real report showed an artist's entire 400+ track discography, including massive hits like "Rocket Man" and "Tiny Dancer," all flagged unavailable in one run, then working again on a fresh request seconds later. Every "unavailable" track now gets one cheap, independent recheck before being reported as gone — a track that's actually fine proceeds to download instead of failing; a track that's genuinely removed still fails the same as before.
 
