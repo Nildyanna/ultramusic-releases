@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.33
+- Fixed real songs getting reported as "removed or deleted" when they weren't. YouTube Music's album-listing API occasionally marks a track unavailable even though it plays fine (confirmed: a ~0.3% false-positive rate even under normal conditions), and that rate can spike much higher during a transient bad response — a real report showed an artist's entire 400+ track discography, including massive hits like "Rocket Man" and "Tiny Dancer," all flagged unavailable in one run, then working again on a fresh request seconds later. Every "unavailable" track now gets one cheap, independent recheck before being reported as gone — a track that's actually fine proceeds to download instead of failing; a track that's genuinely removed still fails the same as before.
+
 ## v1.0.32
 - Actually fixed the "does not look like a Netscape format cookies file" corruption bug from v1.0.29 — that fix only protected successful downloads. On a track that failed (rate-limited, unavailable, network error — most of what happens during a big batch), the protection got skipped entirely, leaving every failed track free to corrupt the cookies file for everyone else running at the same time. This showed up as a real user report: downloading an artist's whole catalog produced hundreds of false "no longer available" failures, because cookies broke partway through and the rest of the run went out anonymously into YouTube's rate limiting. Verified directly: reproduced the corruption with pure failures under the old code (49 errors), reproduced zero errors under the same conditions with the fix.
 
