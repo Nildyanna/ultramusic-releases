@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.32
+- Actually fixed the "does not look like a Netscape format cookies file" corruption bug from v1.0.29 — that fix only protected successful downloads. On a track that failed (rate-limited, unavailable, network error — most of what happens during a big batch), the protection got skipped entirely, leaving every failed track free to corrupt the cookies file for everyone else running at the same time. This showed up as a real user report: downloading an artist's whole catalog produced hundreds of false "no longer available" failures, because cookies broke partway through and the rest of the run went out anonymously into YouTube's rate limiting. Verified directly: reproduced the corruption with pure failures under the old code (49 errors), reproduced zero errors under the same conditions with the fix.
+
 ## v1.0.31
 - Fixed the Linux `.deb` installing but then crashing immediately on launch (`ModuleNotFoundError: No module named 'version'`). The package builder never included `version.py`, even though the app imports it directly — it was left out because the file list that builds the package and the file list that computes checksums were two separate, hand-maintained copies that had drifted apart. Merged into one list so this can't happen again.
 
