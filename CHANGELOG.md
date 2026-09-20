@@ -1,5 +1,11 @@
 # UltraMusic Changelog
 
+## v1.0.36
+- Retag Library ran with no visible progress and no way to stop it. It now shows a live count ("Retagging... 120/840 checked, 6 fixed") on the app's regular progress bar, and the Stop button cancels it cleanly.
+- New **Retag Artist** button — scopes the same AlbumArtist fix to one artist's folder instead of requiring a full library rescan every time.
+- Fixed illegal Windows filename characters (`: * ? " < > | /`) all collapsing to a single `_`, mangling real titles beyond recognition ("Nebraska '82: Expanded Edition" became "Nebraska '82_ Expanded Edition", "Who Believes In Angels?" became "Who Believes In Angels_"). Each character now gets a readable substitute instead (`:` → ` -`, `/`/`\`/`|` → `-`, `"` → `'`, `<`/`>` → `(`/`)`, `?`/`*` removed).
+- Fixed a duplicate-download risk that fixing the above would otherwise have caused: folders already on disk under the old, more heavily-mangled naming (e.g. from before this fix, or from any other punctuation quirk) are now matched against the newly-computed name using a punctuation-insensitive comparison, so an existing album is still recognized as already downloaded instead of getting a second copy under its corrected name.
+
 ## v1.0.35
 - Found the actual cause of the "removed or deleted" mass-failures v1.0.33/v1.0.34 were chasing: it's real YouTube-side rate-limiting, confirmed directly against yt-dlp itself — the exact same block shows up as a generic "Video unavailable" through one internal player client and as an explicit "rate-limited by YouTube for up to an hour" through another, for the same video, at the same time. The app was treating the vaguer message as a confirmed permanent deletion instead of a rate limit. **This release can't undo YouTube's own block** — only waiting (up to an hour, per YouTube's own message) or switching networks does that. What it fixes: a burst of 6+ "unavailable" results in a row with zero successes between them is no longer trusted individually — it's now treated as suspected throttling, backed off, and reported once clearly instead of flooding the failure list with hundreds of individually "removed" tracks that are actually just fine.
 
