@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.37
+- Fixed a hard, unrecoverable track failure when the destination drive briefly drops out mid-write (confirmed with a real case: a USB hard drive momentarily disconnecting/reconnecting under sustained multi-track write load — Windows itself logged the disk error and recovered within about a second, but the app had already permanently failed every track that happened to be writing at that exact moment, with zero retry). Writing the finished file into the library folder now retries a few times with backoff before giving up, the same courtesy already given to network errors elsewhere in the app — a genuinely dead/still-disconnected drive still fails correctly after retries are exhausted.
+
 ## v1.0.36
 - Retag Library ran with no visible progress and no way to stop it. It now shows a live count ("Retagging... 120/840 checked, 6 fixed") on the app's regular progress bar, and the Stop button cancels it cleanly.
 - New **Retag Artist** button — scopes the same AlbumArtist fix to one artist's folder instead of requiring a full library rescan every time.
