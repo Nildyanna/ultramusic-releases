@@ -1,5 +1,9 @@
 # UltraMusic Changelog
 
+## v1.0.38
+- **Android app brought to feature parity with desktop/Linux**: FLAC option, lyrics embedding, region selector, Retag Library + new Retag Artist (with live progress and a Stop button), and manual cookie import via the system file picker. Also picked up the readable-filename fix and the cookiejar-corruption fix from earlier desktop releases, which the Android port had predated and still carried the old versions of.
+- All three platforms now remember whichever of Song/Album/Artist you searched with last and reopen with that preselected, instead of always defaulting back to Album.
+
 ## v1.0.37
 - Fixed a hard, unrecoverable track failure when the destination drive briefly drops out mid-write (confirmed with a real case: a USB hard drive momentarily disconnecting/reconnecting under sustained multi-track write load — Windows itself logged the disk error and recovered within about a second, but the app had already permanently failed every track that happened to be writing at that exact moment, with zero retry). Writing the finished file into the library folder now retries a few times with backoff before giving up, the same courtesy already given to network errors elsewhere in the app — a genuinely dead/still-disconnected drive still fails correctly after retries are exhausted.
 
