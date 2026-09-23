@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.40
+- Fixed "View Log" opening behind the main window on the first click (looked like it opened and immediately closed) — a freshly created log window was never explicitly raised/focused, only a second click did that, via the "already open" path. Verified directly: now shows in front on the very first click.
+
 ## v1.0.39
 - Fixed real duplicate downloads: an album already on disk in one format (e.g. MP3, from before the FLAC option existed or a change of format setting) was invisible to the "already have this" check, which only ever looked for the currently-selected format's file extension — so switching format, or just revisiting an old album, silently redownloaded every track and dropped the new copies in the same folder alongside the originals. Every track now checks for an existing copy in any supported format: an equal-or-better existing file is left alone (never downgraded, never duplicated), and downloading in a genuinely higher-quality format now replaces the old lower-quality file instead of sitting next to it. Applies to both the desktop/Linux app and the Android app.
 - Android also gained the album-level "already complete, skip" fast path desktop already had — it never existed there before, so a fully-downloaded album still re-fetched its thumbnail and looped every track's existence check instead of recognizing upfront there was nothing to do.
