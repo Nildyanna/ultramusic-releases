@@ -1,5 +1,9 @@
 # UltraMusic Changelog
 
+## v1.0.42
+- **Stopped filing albums under the wrong artist** (e.g. Kanye West's *DONDA 2* ending up in a `DONDA` artist folder, tagged Artist and AlbumArtist "DONDA"). The app trusted the *first* artist YouTube Music credits, and for some releases that's a stand-in entity named after the project (*DONDA 2* is credited `DONDA, Kanye West, Ye`). The artist is now chosen from better evidence, in order: the artist whose page you're downloading from; a credited artist that already has a folder in your library; the first credit that isn't a project-named stand-in. The per-track Artist tag gets the same treatment, while ordinary collaborations still keep their first-credited performer. When the app files something under a different name than the first credit, it says so in the log (🎯). Applies to both the desktop/Linux and Android apps.
+- A stand-in folder that already exists in your library (like the `DONDA` one) is deliberately *not* treated as evidence, so it can't attract more albums.
+
 ## v1.0.41
 A reliability pass over the five highest-impact problems found in a code review.
 - **Downloads no longer stall on genuinely removed tracks.** The v1.0.35 "is YouTube rate-limiting me?" check treated every dead track as a possible throttle once six came back unavailable in a row, pausing all downloads for 30 seconds each. For a catalog with hundreds of removed tracks that meant hours. It now pauses and retries once per suspected burst, and a track that's still unavailable after the pause counts as confirmed gone — which also raises the bar for the next pause. A 400-track run of removals now costs about 7 pauses instead of hundreds.
