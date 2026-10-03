@@ -1,5 +1,11 @@
 # UltraMusic Changelog
 
+## v1.0.48
+- Fixed the update prompt showing the new version with a doubled "v" ("vv1.0.47").
+
+## v1.0.47
+- **Scan Library now offers near-matches for folders it could not match exactly.** When a library folder has no artist with exactly the same name on YouTube Music (a different spelling, "The" prefix, punctuation, a typo), the scan asks before skipping it: a window lists each such folder with the closest artists and their similarity, pre-selecting a candidate only when it is a very close match (80%+) and otherwise defaulting to Skip. Nothing is applied until you press Continue scan. Your answers are remembered (artist_matches.json in the app data folder), so each folder is only asked about once. Folders with nothing similar are listed in the log as before.
+
 ## v1.0.46
 - **Fixed Scan Library glitching the whole window on big libraries.** A scan that found over a thousand missing releases built a card (thumbnail, checkbox, buttons) for every one at once, which exhausted Windows' graphics handles — the window then painted garbage outside its frame. Results are now one collapsed row per artist ("Artist • N missing or incomplete") with a checkbox and a ▸ button; an artist's albums are only drawn when you expand it, where you can untick individual ones. A ticked artist you never expand is downloaded in full.
 
