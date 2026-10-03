@@ -1,5 +1,14 @@
 # UltraMusic Changelog
 
+## v1.0.41
+A reliability pass over the five highest-impact problems found in a code review.
+- **Downloads no longer stall on genuinely removed tracks.** The v1.0.35 "is YouTube rate-limiting me?" check treated every dead track as a possible throttle once six came back unavailable in a row, pausing all downloads for 30 seconds each. For a catalog with hundreds of removed tracks that meant hours. It now pauses and retries once per suspected burst, and a track that's still unavailable after the pause counts as confirmed gone — which also raises the bar for the next pause. A 400-track run of removals now costs about 7 pauses instead of hundreds.
+- **Fewer duplicates in partly-downloaded albums.** Tracks were recognised only by the exact filename the current version would produce, so tracks saved by an older version (`Who Believes In Angels_.mp3`) were downloaded again next to themselves whenever the album wasn't 100% complete. They're now matched by track number plus a punctuation-insensitive title, in any supported format, and a lower-quality copy is replaced rather than duplicated. `cover.jpg` is now written by whichever track lands first, not only track 1.
+- **Updates are signature-checked.** The auto-updater used to run whatever installer it downloaded. Releases are now signed with a key that stays on the maintainer's machine, and the app refuses to run an installer whose signature doesn't verify (or that has none). Applies from this version onward — copies older than 1.0.41 still update unverified this one time. Also fixed: if an update failed, the "Update failed" dialog never actually appeared (a Python scoping bug swallowed it).
+- **Fixed non-Latin album names matching each other.** Folder matching stripped every non-ASCII character, so any two Japanese (or Korean, etc.) album folders under one artist compared as identical.
+- **Android:** cookie import now handles the `content://` file locations Android's picker returns, three error messages that were silently dropped now show up, there's a Log button (and a log file) for diagnosing problems on the phone, and "unavailable" bursts are handled like on desktop. Not yet verified on a physical device.
+- Under the hood: the logic shared by the desktop and Android apps now lives in one module with 42 automated tests (run on every push), instead of two hand-synced copies — and a test now guards against the Linux package missing a module the app imports, which is what broke the 1.0.31 `.deb`.
+
 ## v1.0.40
 - Fixed "View Log" opening behind the main window on the first click (looked like it opened and immediately closed) — a freshly created log window was never explicitly raised/focused, only a second click did that, via the "already open" path. Verified directly: now shows in front on the very first click.
 
