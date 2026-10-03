@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.46
+- **Fixed Scan Library glitching the whole window on big libraries.** A scan that found over a thousand missing releases built a card (thumbnail, checkbox, buttons) for every one at once, which exhausted Windows' graphics handles — the window then painted garbage outside its frame. Results are now one collapsed row per artist ("Artist • N missing or incomplete") with a checkbox and a ▸ button; an artist's albums are only drawn when you expand it, where you can untick individual ones. A ticked artist you never expand is downloaded in full.
+
 ## v1.0.45
 - **New: 🔍 Scan Library.** Pick your music folder and the app compares every artist folder with that artist's YouTube Music discography, then lists every release that's missing or only partly downloaded (with "you have N" next to the track count), grouped by artist, ready to tick and send through Download Selected Releases. Only exact artist-name matches are scanned — a folder with no exact match is skipped and listed in the log rather than guessed at, so one artist's albums can never be downloaded into another's folder. An album that exists but whose track count couldn't be checked (rate limit) is not re-queued, since there's no way to tell if it's complete. Downloads from the scan file under the same artist folder they were found in. Stop works during a scan. Desktop/Linux only for now.
 
