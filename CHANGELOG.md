@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.49
+- Fixed the Scan Library progress bar jumping back to 50% over and over: loading each artist's track counts was resetting the shared progress bar. The bar now advances steadily with the number of folders scanned.
+
 ## v1.0.48
 - Fixed the update prompt showing the new version with a doubled "v" ("vv1.0.47").
 
