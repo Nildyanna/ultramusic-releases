@@ -1,5 +1,9 @@
 # UltraMusic Changelog
 
+## v1.0.51
+- **Low-disk-space warning.** Before a download starts, the app checks the library drive and, if under 2 GB is free, asks whether to start anyway (a cloud-drive folder can report inaccurate free space, so it is only a warning). The run still stops by itself if a write actually fails.
+- **Tracks that keep failing are remembered and skipped.** A track that fails as removed/region-blocked on two separate runs is marked unavailable and skipped from then on, so scans and downloads stop retrying it (rate limits, full disks and network errors are never counted). An album missing only such tracks no longer shows up as incomplete in Scan Library. A track that later downloads fine is forgotten. Reversible: the new **🚫 Skipped Tracks** button lists them, lets you retry one, or **Reset all (retry everything)** to do a complete scan again. Desktop and Android (🚫 Skipped button).
+
 ## v1.0.50
 - **A full drive now stops the download run instead of failing every remaining track.** When the library drive (or the temp folder) ran out of space, each track retried the write four times, failed, and the run carried on to the next one — a Scan Library run could grind through hundreds of tracks like that before anyone noticed. A "No space left on device" error now stops everything at once with one clear message (💾 Out of disk space), removes the half-written file so it can't pass for a finished track, and leaves the albums in the list so you can download them again after freeing space — only the missing tracks are fetched. Applies to desktop/Linux and Android.
 
