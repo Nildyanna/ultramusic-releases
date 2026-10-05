@@ -1,5 +1,14 @@
 # UltraMusic Changelog
 
+## v1.0.56
+- **A failed or invalid download can no longer cost you a file.** Every download is checked before it may replace anything: not empty, the right file signature (FLAC/MP3), parses, its length is within a few seconds of the length YouTube Music reports, and (desktop) it decodes end to end with ffmpeg. Files are written to a temporary `.part` name, size-checked and renamed into place, so a failed copy (full disk, Drive hiccup) never leaves a zero-byte or truncated file and never touches an existing one. The old MP3 is deleted only after the new FLAC is validated, fully written and verified at its final name.
+- **Zero-byte files never count as "already have it"**, and are deleted automatically (with leftover `.part` files) when an album is processed. Fixes the empty FLACs left behind by the out-of-space errors.
+- **Different editions are left alone.** If a folder's numbered files don't match YouTube Music's release by number *and* title (or are too oddly named to match), the album is skipped untouched and reported ("looks like a different edition") instead of having tracks replaced or added. Missing or upgradeable tracks are only fetched when every file on disk matches.
+- **Controlled batches.** New settings next to Keep existing files: **Stop after N albums / N GB** (stops cleanly between albums; the rest stay queued) and **Pause after each artist** (press Resume for the next). A run now also stops itself after 5 tracks in a row are blocked even with your cookies.
+- **Disc subfolders** named `Digital Media NN`, `Vinyl NN` and `12 Vinyl NN` now count like `CD NN`/`Disc NN`.
+- **Bulk "Mark owned" import:** Skipped / Owned → Owned albums → **Import list…** reads a text file, one per line: `Artist - Album` (or `Artist | Album`, or an `MPREb_…` album ID).
+- Symbol-only track titles (`$`, `★`) are now matched correctly.
+
 ## v1.0.55
 - Fixed the "What's New" list shown in the installer: versions 1.0.50–1.0.54 were listed out of order. No app changes.
 
