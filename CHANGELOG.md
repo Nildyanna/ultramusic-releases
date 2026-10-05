@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.55
+- Fixed the "What's New" list shown in the installer: versions 1.0.50–1.0.54 were listed out of order. No app changes.
+
 ## v1.0.54
 - **"Keep existing files (no MP3→FLAC upgrades)" is now OFF by default** (v1.0.53 shipped it on). With it off, downloading as FLAC upgrades an existing MP3 to FLAC and removes the MP3, as in earlier versions; tick it to leave existing files alone. The setting is unchanged if you already chose one. Mark owned is the way to protect individual albums from refilling or upgrading.
 
