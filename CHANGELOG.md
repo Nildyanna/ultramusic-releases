@@ -1,5 +1,10 @@
 # UltraMusic Changelog
 
+## v1.0.53
+- **Owned albums.** New **Mark owned** button on every album row (and **Mark all owned** on a Scan Library artist). An owned album is checked before anything on disk is counted, so it is never downloaded, re-downloaded, refilled or listed by Scan Library — trimmed albums and albums you deleted on purpose stay exactly as you left them. It is keyed by the YouTube Music album ID, and also recognised by artist + title if the same album turns up under another ID (another region's catalog). Reversible: **🚫 Skipped / Owned → Owned albums** lists them with Remove / Clear all. Desktop and Android (Owned button on album rows; Clear owned in the 🚫 Skipped popup).
+- **Existing files are no longer upgraded by default.** New option **Keep existing files (no MP3→FLAC upgrades)**, ON by default: a track that already exists in any format is left alone, so downloading as FLAC no longer replaces your MP3s with FLACs and deletes the MP3s (this is what rewrote a hand-trimmed Eminem album). Missing tracks are still filled in. Untick it to get the old upgrade behaviour. Desktop and Android.
+- **Multi-disc albums kept in `CD 1` / `Disc 2` subfolders** now count toward an album being complete (previously only files directly in the album folder counted, so such albums looked incomplete and were refilled).
+
 ## v1.0.52
 - **Tracks blocked even with your cookies now go on the skipped list too.** If a download is refused (age-restricted, private, members-only) while a cookie file or detected browser session is in use, the track counts like a removed one: after two separate runs it is skipped from then on, shown on the 🚫 Skipped Tracks list with its reason. Without cookies nothing is remembered, since a cookie file could fix it. After adding a new cookie file, use Reset all on the Skipped Tracks list to try them again. Desktop and Android.
 
