@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.50
+- **A full drive now stops the download run instead of failing every remaining track.** When the library drive (or the temp folder) ran out of space, each track retried the write four times, failed, and the run carried on to the next one — a Scan Library run could grind through hundreds of tracks like that before anyone noticed. A "No space left on device" error now stops everything at once with one clear message (💾 Out of disk space), removes the half-written file so it can't pass for a finished track, and leaves the albums in the list so you can download them again after freeing space — only the missing tracks are fetched. Applies to desktop/Linux and Android.
+
 ## v1.0.49
 - Fixed the Scan Library progress bar jumping back to 50% over and over: loading each artist's track counts was resetting the shared progress bar. The bar now advances steadily with the number of folders scanned.
 
