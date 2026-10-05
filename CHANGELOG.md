@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.57
+- **Fixed albums claiming the wrong folder.** The app accepted any folder whose name *starts with* the album title and took whichever the operating system listed first, so `Red` could claim `Red (Taylor's Version)` even with a real `Red` folder beside it (and the reverse in scans and upgrades). An exact match (also ignoring a trailing year like `(2012)` or old punctuation) now always wins; the "starts with" match is only a fallback and picks the closest name.
+
 ## v1.0.56
 - **A failed or invalid download can no longer cost you a file.** Every download is checked before it may replace anything: not empty, the right file signature (FLAC/MP3), parses, its length is within a few seconds of the length YouTube Music reports, and (desktop) it decodes end to end with ffmpeg. Files are written to a temporary `.part` name, size-checked and renamed into place, so a failed copy (full disk, Drive hiccup) never leaves a zero-byte or truncated file and never touches an existing one. The old MP3 is deleted only after the new FLAC is validated, fully written and verified at its final name.
 - **Zero-byte files never count as "already have it"**, and are deleted automatically (with leftover `.part` files) when an album is processed. Fixes the empty FLACs left behind by the out-of-space errors.
