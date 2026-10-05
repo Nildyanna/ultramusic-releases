@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.54
+- **"Keep existing files (no MP3→FLAC upgrades)" is now OFF by default** (v1.0.53 shipped it on). With it off, downloading as FLAC upgrades an existing MP3 to FLAC and removes the MP3, as in earlier versions; tick it to leave existing files alone. The setting is unchanged if you already chose one. Mark owned is the way to protect individual albums from refilling or upgrading.
+
 ## v1.0.53
 - **Owned albums.** New **Mark owned** button on every album row (and **Mark all owned** on a Scan Library artist). An owned album is checked before anything on disk is counted, so it is never downloaded, re-downloaded, refilled or listed by Scan Library — trimmed albums and albums you deleted on purpose stay exactly as you left them. It is keyed by the YouTube Music album ID, and also recognised by artist + title if the same album turns up under another ID (another region's catalog). Reversible: **🚫 Skipped / Owned → Owned albums** lists them with Remove / Clear all. Desktop and Android (Owned button on album rows; Clear owned in the 🚫 Skipped popup).
 - **Existing files are no longer upgraded by default.** New option **Keep existing files (no MP3→FLAC upgrades)**, ON by default: a track that already exists in any format is left alone, so downloading as FLAC no longer replaces your MP3s with FLACs and deletes the MP3s (this is what rewrote a hand-trimmed Eminem album). Missing tracks are still filled in. Untick it to get the old upgrade behaviour. Desktop and Android.
