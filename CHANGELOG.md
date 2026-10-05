@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.52
+- **Tracks blocked even with your cookies now go on the skipped list too.** If a download is refused (age-restricted, private, members-only) while a cookie file or detected browser session is in use, the track counts like a removed one: after two separate runs it is skipped from then on, shown on the 🚫 Skipped Tracks list with its reason. Without cookies nothing is remembered, since a cookie file could fix it. After adding a new cookie file, use Reset all on the Skipped Tracks list to try them again. Desktop and Android.
+
 ## v1.0.51
 - **Low-disk-space warning.** Before a download starts, the app checks the library drive and, if under 2 GB is free, asks whether to start anyway (a cloud-drive folder can report inaccurate free space, so it is only a warning). The run still stops by itself if a write actually fails.
 - **Tracks that keep failing are remembered and skipped.** A track that fails as removed/region-blocked on two separate runs is marked unavailable and skipped from then on, so scans and downloads stop retrying it (rate limits, full disks and network errors are never counted). An album missing only such tracks no longer shows up as incomplete in Scan Library. A track that later downloads fine is forgotten. Reversible: the new **🚫 Skipped Tracks** button lists them, lets you retry one, or **Reset all (retry everything)** to do a complete scan again. Desktop and Android (🚫 Skipped button).
