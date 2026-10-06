@@ -1,5 +1,71 @@
 # UltraMusic Changelog
 
+## v1.0.72
+- **New format: "Original (no re-encode)".** YouTube only serves lossy audio (Opus at about 134 kbps, or AAC). Original keeps that stream exactly as YouTube sent it (`.opus`, or `.m4a` when only AAC exists), fully tagged with cover art: nothing is re-encoded, and the files are about 12 times smaller than FLAC (measured on one real track: 4.7 MB against 59.1 MB). It only fills what is missing; it never replaces an MP3 and a FLAC is never swapped for it. Plex reads both containers.
+- **FLAC and MP3 are now named for what they are.** The old "FLAC (lossless container)" suggested lossless audio; since the source is lossy, FLAC is a conversion of it, not an upgrade (the "24-bit" is padding). The menu now says "FLAC (re-encoded, big)" and "MP3 320 kbps (re-encoded)", and choosing one logs a one-line explanation.
+- **Every download now carries a `SOURCE` tag** (for example `YouTube Opus 135 kbps 48 kHz`), so a converted file can always be told from a genuinely lossless one later. Applies to Original, FLAC and MP3, on desktop and Android.
+- **Failures in plain words.** Errors are classified (network, rate limit, sign-in/age, unavailable, a YouTube page this version can't read, a file or folder that changed under the app, drive full) and shown as one short sentence instead of a long exception, and a batch ends with a "By reason" count (for example `3 x marked removed or region-blocked; 2 x wrong length`). A folder renamed or moved by another program mid-run is reported as exactly that and the run carries on.
+- **Android runs the same album pipeline as the desktop app.** The two copies had drifted; it is now one module used by both. The phone gains the desktop's handling of greyed-out tracks and podcast episodes, `cover.jpg`, per-track failure reasons and the clearer log lines, and says "wasn't downloaded" instead of "all tracks downloaded" when an album was skipped.
+- A download rejected for any reason other than length (an empty file, a bad header) is no longer reported as "wrong length".
+- Under the hood: dependencies are pinned (`requirements.txt`, `requirements-dev.txt`, and yt-dlp/ytmusicapi in the Android build); a weekly job tries the newest yt-dlp and ytmusicapi against a real download, conversion and validation, so a YouTube-side change is noticed before a release; the album pipeline has its own 25 tests that need no display, plus format, error and packaging tests (285 in all); `finish_release.ps1` attaches the APK and syncs the changelog.
+
+## v1.0.71
+- **Albums whose declared track count is higher than what YouTube Music actually lists no longer stay incomplete forever.** Eagles' Legacy declares 116 tracks but lists 113 (and BULLY declares 18 but lists 17), so a complete folder was reported as short on every scan. Scan Library now compares your folder with the tracks the album really lists. Very large albums (200+ tracks) are still compared with the declared count.
+
+## v1.0.70
+- **Every album now logs its result.** After an album is processed the log says how many of its tracks are on disk and which tracks YouTube Music lists with no video (greyed out), instead of staying silent when an album is already complete. Use it to see why an album is a track or two short.
+
+## v1.0.69
+- **Albums that are one or a few tracks short no longer stay on the list forever.** YouTube Music lists some tracks with no video at all (greyed out), and the downloader skipped them without a word, so the album stayed incomplete on every scan (for example Metallica's Load and ReLoad box sets, The Complete Stevie Wonder, Elton John's Duets). The log now says `⏭ '<track>' has no playable video on YouTube Music (greyed out) — nothing to download.`, and an album missing only such tracks counts as complete from the next scan after you download it once.
+
+- **An album filed under a different artist is no longer reported as missing under the first one.** Downloads such as Biggie's "Unsolved" (credited to Biggie and 2Pac, filed under 2Pac) were listed as missing in the Notorious B.I.G folders on every scan, because the scan only looked inside each artist's own folder. The app now remembers where each album was downloaded; download an affected album once more (it is skipped as complete) and the scan finds it.
+
+- **Two library folders matched to the same artist are flagged.** If two folders use the same saved YouTube Music artist (for example Bruce Springsteen's E Street Band and Sessions Band folders, which then list the same releases), the scan log now warns and names the file to edit to fix the wrong one.
+
+## v1.0.68
+- **Scan Library says why an album is listed as incomplete.** Under each artist it now logs, per album, how many tracks you have against YouTube Music's count, which folder it matched, and how many tracks are known-unavailable (up to 12 albums per artist). Use it to see why an artist with only a few missing tracks never clears.
+
+## v1.0.67
+- **A track with no video of the right length is no longer reported on every run.** When the only video that exists is a different length than the track (for example P!NK "There You Go" on Greatest Hits, listed at 3:30 but only available as a 3:51 music video) and no other version can be found, it used to fail on every batch. After two runs with the same result it is now skipped like other unavailable tracks, albums missing only such tracks count as complete, and it appears in 🚫 Skipped Tracks as "only available at the wrong length" where you can retry it. Changing your cookies does not release it.
+- **A library folder with no findable artist is now matched through its own albums.** YouTube Music's search returns nothing at all for a name made only of symbols such as `¥$` (Kanye West / Ty Dolla $ign), so the folder was reported as "no similar artist". When the artist search finds nothing, the app now searches for up to three of the albums in the folder and uses the artist credited on the result whose name matches the folder (the artist's own page, or failing that the albums found for them, are then used for the scan).
+
+## v1.0.66
+- **Artists whose name is only symbols are found.** The Kanye West / Ty Dolla $ign duo `¥$` was reported as "no similar artist on YouTube Music" because every character of its name counts as punctuation, which the matching threw away. Artist names with no letters or digits are now compared by their symbols.
+- **The log says why no right version was found.** When a wrong-length track can't be fixed, a `🔎` line lists what was tried: whether a counterpart video was listed, whether the search matched, and the length of each candidate that was downloaded and rejected.
+- **The log says what the search returned** when a library folder has no matching artist.
+
+## v1.0.65
+- **Tracks skipped because of bad cookies are released automatically.** A track marked "blocked even with your cookies" is a verdict about those cookies, not about the track. The app now remembers which cookies each verdict was made with; when your cookies change (a new export, or after you import a file with 🍪 Provide Cookies) every such track is tried again, with a log line saying how many. Tracks that were removed or region-blocked stay skipped. Verdicts recorded by older versions count as stale, so the first run after updating retries them all once.
+- **New "Retry only cookie-blocked tracks" button** in 🚫 Skipped Tracks, for doing it by hand without clearing the removed/region-blocked ones.
+- **Removed or region-blocked tracks also look in the current region.** Availability can differ per release, so the same recording on another album may be playable here. Matching is as strict as before (same title, version, artist and length).
+- **Artists whose page can't be read are found by search.** Jon Bon Jovi (and similar artists served as plain channels) failed with a `twoColumnBrowseResultsRenderer` error in Scan Library; their albums are now found by searching the artist's name. Other errors, such as rate limits, are still reported as before.
+- **Fewer double downloads.** For tracks whose video isn't the plain audio track (music videos and other uploads), the app checks the video's length before downloading and goes straight to the right version, instead of downloading the wrong one first. The retry log line now shows the video type, so the next log shows which tracks needed it.
+
+## v1.0.64
+- **"Please sign in" is now recognised as a sign-in problem.** It used to be retried three times and reported as a generic failure; it now fails fast, is remembered like other blocked tracks, and counts toward the new end-of-batch hint (also on Android).
+- **Wrong-length downloads get a second chance.** When a download comes back a different length than the track (typically the music-video cut or another version), the app now looks for the audio-only counterpart and a matching recording in the catalogs, and uses one only if it passes the same length check. A track with no right version is still rejected, and nothing wrong is saved.
+- **Fixed `cover.jpg` write errors (and false track failures).** Several tracks of one album wrote the same `cover.jpg.part` at once, giving "Permission denied" / "Invalid argument" on Google Drive, and a cover failure could mark a good track as failed. Cover art is now written once per album, and a cover that can't be written is only a warning.
+- **The failed-track summary now says why.** Each failed track in "Batch finished with N failed track(s)" carries its reason (needs an age-verified account, wrong length, no longer available, and so on). If any tracks were age-restricted or sign-in only, the log ends with how to fix the account and cookies.
+
+## v1.0.63
+- **Fixed good files being thrown away as "the wrong size" on Google Drive.** Cloud-synced virtual drives (Google Drive for desktop) can report a stale, smaller size for a moment after a write, so some perfectly good copies were rejected and deleted (and retried, and failed again) depending on timing. The copy is now flushed to disk and a size mismatch is re-checked for up to 20 seconds before it counts; a file that really is short is still rejected, and the message now says how many bytes arrived.
+- **Scan Library now asks where to download.** Downloads go to the saved Download Folder, not to the folder you scanned, so scanning one library while a stale setting pointed at another quietly filled the wrong place. If the scanned folder differs, you are asked whether to use it as the Download Folder.
+
+## v1.0.62
+- **The Windows build now bundles yt-dlp's YouTube solver components** (`yt-dlp[default]`, including `yt-dlp-ejs`), which formats on some videos depend on. Includes everything from v1.0.61.
+
+## v1.0.61
+- **A library drive that rejects writes now stops the run.** If 5 files in a row can't be written to the library folder (a cloud-synced folder such as Google Drive over its upload quota, or a drive that is full, offline or failing), the run stops once with a clear message instead of retrying every remaining track. Nothing corrupt is kept. Run Scan Library again once the drive is fixed or the quota has reset; only the missing tracks are fetched.
+
+## v1.0.60
+- **Fixed the Windows installer crashing on start** in the v1.0.58 and v1.0.59 builds (missing modules). Includes everything from v1.0.58.
+
+## v1.0.59
+- **Fixed the Windows installer crashing on start** (`No module named 'tkinter.font'`) in the short-lived v1.0.58 build. Includes everything from v1.0.58.
+
+## v1.0.58
+- **Blocked tracks no longer stop the run.** Tracks blocked even with your cookies (e.g. explicit tracks the signed-in account can't access) are skipped and reported as before; after 5 in a row you get one warning instead of the run stopping. Tip: make sure the YouTube account behind your cookies is age-verified.
+
 ## v1.0.57
 - **Fixed albums claiming the wrong folder.** The app accepted any folder whose name *starts with* the album title and took whichever the operating system listed first, so `Red` could claim `Red (Taylor's Version)` even with a real `Red` folder beside it (and the reverse in scans and upgrades). An exact match (also ignoring a trailing year like `(2012)` or old punctuation) now always wins; the "starts with" match is only a fallback and picks the closest name.
 
