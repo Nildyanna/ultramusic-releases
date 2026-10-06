@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.73
+- **Library Scan remembers what you unticked.** Untick an artist, or a single album, in the scan results and later scans no longer check or list it, so you do not have to untick it again every time. The status line says how many were left out, and the new **↺ Reset unticked** button (with a count) brings them all back for a complete scan. Ticking an item again restores it, and nothing is hidden from direct downloads or from the Skipped / Owned list.
+
 ## v1.0.72
 - **New format: "Original (no re-encode)".** YouTube only serves lossy audio (Opus at about 134 kbps, or AAC). Original keeps that stream exactly as YouTube sent it (`.opus`, or `.m4a` when only AAC exists), fully tagged with cover art: nothing is re-encoded, and the files are about 12 times smaller than FLAC (measured on one real track: 4.7 MB against 59.1 MB). It only fills what is missing; it never replaces an MP3 and a FLAC is never swapped for it. Plex reads both containers.
 - **FLAC and MP3 are now named for what they are.** The old "FLAC (lossless container)" suggested lossless audio; since the source is lossy, FLAC is a conversion of it, not an upgrade (the "24-bit" is padding). The menu now says "FLAC (re-encoded, big)" and "MP3 320 kbps (re-encoded)", and choosing one logs a one-line explanation.
