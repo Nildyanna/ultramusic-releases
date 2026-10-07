@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.2.2
+- **Two spellings of one artist folder are now one artist (AC-DC / AC_DC).** An older version of the app saved a "/" in an artist's name as "_", so a library can hold both `AC-DC` and `AC_DC`. The scan only looked inside the folder it was scanning, so `AC-DC` (which held just `Live`) was reported as missing 21 albums that were sitting in `AC_DC`. Now an artist folder is searched together with its other spelling (folders whose names are equal once punctuation is ignored), both in Library Scan and New releases and when downloading, so albums found in either are counted as owned and missing tracks are filled in where the album already is. A release found for both spellings is listed once. Nothing is moved or renamed; new albums still go to the folder named the current way. Desktop and Android.
+
 ## v2.2.1
 - **Library Doctor: Tidy now reads vinyl-style names.** Files named like `a1-elvis_presley-heartbreak_hotel_(take_5).flac` ... `b7-...` (a side letter and a track number) used to be left alone as having no track number. When every file in a folder has a side letter and number and none repeats, Tidy now numbers them in order (side A first, side B carrying on after it), removes the artist prefix, turns underscores into spaces and capitalises the words: `01 - Heartbreak Hotel (Take 5).flac`. A folder where only some files fit the pattern is still left alone. Like every tidy it can be undone. Desktop and Android.
 
