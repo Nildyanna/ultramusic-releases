@@ -1,5 +1,18 @@
 # UltraMusic Changelog
 
+## v2.0.2
+- **Library Doctor no longer counts long paths as a problem.** The health check used to list every path over 240 characters among the problems, although the app cannot fix them (shortening a name would make it look like the track is missing and download it again) and they work in Plex, on cloud drives and in this app. Now only paths over Windows' real limit (259 characters) are mentioned, in a separate "FYI, not counted" note, and a clean library shows 0 problems. Desktop and Android.
+
+## v2.0.1
+- **Library Doctor: Tidy no longer says "every file is already named NN - Title" when the health check has just listed files that are not.** Files with no track number it can read (for example scene-style names like `a1-elvis_presley-heartbreak_hotel_(take_5).flac`) are left alone, and Tidy now says exactly that: how many files in how many folders, an example, and that they need renaming by hand (the desktop window also lists them). The health check section is now titled "FOLDERS WITH FILES NOT NAMED ..." because its number counts folders, not files. Desktop and Android.
+
+## v2.0.0
+- **Android: your music now goes to the phone's own Music folder.** With Android's "All files access" (a one-time switch the app asks about; **🩺 Doctor → Storage…** shows the state) downloads are saved to `Music/UltraMusic`: Plex, music players and file managers can see them, and they survive an uninstall. Without the permission nothing changes (the app-private folder). Once you allow it, the app offers to move the music already in the private folder, never overwriting a file. Settings, lists and caches stay app-private. This changes where files are saved, hence the new major version.
+- **Android: tested on an emulator.** After each release build an emulator installs the APK, grants the permission, launches the app and checks that it starts without errors and picks the shared folder (the parts that only exist on a phone: native libraries, the permission switch, scoped storage).
+- **Safer and easier to keep up to date.** GitHub Actions are pinned to exact commits, Dependabot watches the Python pins and the Actions weekly (the repeated yt-dlp / ytmusicapi pins follow from `requirements.txt` automatically), and a failing weekly check now opens an issue.
+- **More tested.** The download engine both apps share (retries, rate limits, cookies, blocked and unavailable tracks, the wrong-length search) went from about half covered to 94%, Library Scan and the phone code gained tests too, and CI now fails if the shared code's coverage drops below 88%.
+- **Smaller files.** The desktop window code is split by screen (`gui_scan.py`, `gui_doctor.py`, `gui_lists.py`, `gui_import.py`, `gui_updates.py`, `gui_theme.py`) and so is the Android screens file (`screens_*.py`, `widgets.py`), with the existing screen tests unchanged.
+
 ## v1.0.79
 - **Android: the permanent signing key is live.** This is the first APK signed with the app's own permanent key (fingerprint `848bb2a2...a52e`), and the build now refuses to publish an APK signed with any other key. From the release after this one, a phone updates the app in place and keeps its music, settings and lists. **Moving from an earlier APK to this one needs one uninstall first**, because earlier builds were signed with throwaway keys; uninstalling deletes the app's own music folder and settings, so copy anything you want to keep out of the app's folder before you do.
 
