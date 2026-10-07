@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v1.0.79
+- **Android: the permanent signing key is live.** This is the first APK signed with the app's own permanent key (fingerprint `848bb2a2...a52e`), and the build now refuses to publish an APK signed with any other key. From the release after this one, a phone updates the app in place and keeps its music, settings and lists. **Moving from an earlier APK to this one needs one uninstall first**, because earlier builds were signed with throwaway keys; uninstalling deletes the app's own music folder and settings, so copy anything you want to keep out of the app's folder before you do.
+
 ## v1.0.78
 - **Your lists can no longer be wiped by a crash.** The owned list, skipped list, unticked list, saved artist matches and settings are written safely now (to a temporary file, flushed to disk, then renamed over the old one, with the previous good version kept as a `.bak`). If a file is found damaged anyway it is moved aside, the last good copy is restored, and the log says so, instead of silently starting from an empty list that the next save would write over the real one. Desktop and Android.
 - **Library Scan is much faster the second time.** Each artist's album list and track counts are saved for a week. Scanning again asks whether to use them (fast, and far fewer requests to YouTube, which helps with rate limits) or to ask YouTube again; your own folders are always read fresh, so what you have is always up to date. Desktop and Android.
