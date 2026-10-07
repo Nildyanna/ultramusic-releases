@@ -1,5 +1,9 @@
 # UltraMusic Changelog
 
+## v1.0.75
+- **Android: untick single tracks inside a release, and import a song list.** Open a release with the ▸ button and untick the tracks you do not want; they are left out of that release's download. **📄 Import list** reads a .txt (one song per line, `#` for comments), matches each line on YouTube Music, shows what it found and what it could not, and downloads just the songs you leave ticked (not their whole albums). Both already existed on the desktop; the Android app now has everything the desktop has except auto-update and browser-cookie detection, which a phone cannot do.
+- The song-list reading, matching and "this song only" logic is now shared code used by both apps; a list that starts with a byte-order mark no longer leaves it stuck to the first song.
+
 ## v1.0.74
 - **The Android app now matches the desktop app (and will from now on).** New on the phone: **Library Scan** (compares your music folder with each artist's YouTube Music albums, asks which artist a oddly named folder is, and lists what is missing); **Download selected** for an artist's releases or scan results; **Original (no re-encode)** and the honestly named FLAC/MP3 formats; **Stop after N albums / N GB** and **Pause per artist**, plus automatic stops; **↺ Reset unticked** (artists and albums you untick in a scan are remembered and left out of later scans until you reset); an **Owned albums** list you can edit and import into; **Retry cookie-blocked only** in Skipped; and a low-storage warning. Android and desktop now run the same shared code for the scan, the artist album list and the batch controls.
 - The Windows app uses that shared code too; behaviour is unchanged (checked against a 19-scenario transcript).
