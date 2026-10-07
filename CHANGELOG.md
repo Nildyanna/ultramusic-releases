@@ -1,5 +1,9 @@
 # UltraMusic Changelog
 
+## v1.0.76
+- **A throttled YouTube no longer gets real tracks skipped for good.** YouTube answers rate-limited requests with "Video unavailable", the same message it gives for a removed track. A track that failed that way on two runs was marked "removed" and skipped from then on, so two throttled runs could wipe out playable tracks (confirmed with a real one from an R.E.M. run). Now an "unavailable" result does not count toward that skip while the app suspects a throttle (it announced one in the last 10 minutes, or 4 came back within a minute with no success between). The log and the batch summary say "unavailable while YouTube was throttling — try again later" instead of "removed", and nothing is added to the Skipped list. Tracks that are really gone are still learned in calm stretches. On desktop and Android alike.
+- If an earlier run already marked playable tracks as removed, use 🚫 Skipped Tracks → Reset all (retry everything); only the ones that are really gone will fail again.
+
 ## v1.0.75
 - **Android: untick single tracks inside a release, and import a song list.** Open a release with the ▸ button and untick the tracks you do not want; they are left out of that release's download. **📄 Import list** reads a .txt (one song per line, `#` for comments), matches each line on YouTube Music, shows what it found and what it could not, and downloads just the songs you leave ticked (not their whole albums). Both already existed on the desktop; the Android app now has everything the desktop has except auto-update and browser-cookie detection, which a phone cannot do.
 - The song-list reading, matching and "this song only" logic is now shared code used by both apps; a list that starts with a byte-order mark no longer leaves it stuck to the first song.
