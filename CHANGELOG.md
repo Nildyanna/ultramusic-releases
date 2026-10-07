@@ -1,5 +1,10 @@
 # UltraMusic Changelog
 
+## v1.0.74
+- **The Android app now matches the desktop app (and will from now on).** New on the phone: **Library Scan** (compares your music folder with each artist's YouTube Music albums, asks which artist a oddly named folder is, and lists what is missing); **Download selected** for an artist's releases or scan results; **Original (no re-encode)** and the honestly named FLAC/MP3 formats; **Stop after N albums / N GB** and **Pause per artist**, plus automatic stops; **↺ Reset unticked** (artists and albums you untick in a scan are remembered and left out of later scans until you reset); an **Owned albums** list you can edit and import into; **Retry cookie-blocked only** in Skipped; and a low-storage warning. Android and desktop now run the same shared code for the scan, the artist album list and the batch controls.
+- The Windows app uses that shared code too; behaviour is unchanged (checked against a 19-scenario transcript).
+- `release.ps1` now runs the unit tests in the dev environment (all 310 run; before, a fifth silently skipped on the bare system Python), and the README's release instructions had a corrupted script name that is fixed.
+
 ## v1.0.73
 - **Library Scan remembers what you unticked.** Untick an artist, or a single album, in the scan results and later scans no longer check or list it, so you do not have to untick it again every time. The status line says how many were left out, and the new **↺ Reset unticked** button (with a count) brings them all back for a complete scan. Ticking an item again restores it, and nothing is hidden from direct downloads or from the Skipped / Owned list.
 
