@@ -1,5 +1,9 @@
 # UltraMusic Changelog
 
+## v2.3.0
+- **Library Doctor: Duplicate albums now merges editions instead of leaving them alone.** Two copies of an album that each had tracks the other lacked (a standard album and its Expanded or Collector's Edition, for example The Marshall Mathers LP 2, Night Visions and The Miracle) used to be left alone because tracks were compared by number, and editions number their tracks differently (one even uses CD 01 / CD 02 folders). Tracks are now matched by title (case, punctuation and "(feat. ...)" ignored). The copy with more of the album stays; a track only the other copy has is moved in (next free number if its own is taken); a track that is in a better format in the other copy (FLAC over MP3) replaces the worse file, which goes to quarantine; then the emptied folder goes to quarantine too. The plan is shown before anything moves, nothing is deleted, and **Undo last tidy** puts every file back. Desktop and Android.
+- **Library Doctor window (desktop):** the report now word-wraps instead of running off the edge, and the buttons are on two rows so they are no longer squeezed together.
+
 ## v2.2.2
 - **Two spellings of one artist folder are now one artist (AC-DC / AC_DC).** An older version of the app saved a "/" in an artist's name as "_", so a library can hold both `AC-DC` and `AC_DC`. The scan only looked inside the folder it was scanning, so `AC-DC` (which held just `Live`) was reported as missing 21 albums that were sitting in `AC_DC`. Now an artist folder is searched together with its other spelling (folders whose names are equal once punctuation is ignored), both in Library Scan and New releases and when downloading, so albums found in either are counted as owned and missing tracks are filled in where the album already is. A release found for both spellings is listed once. Nothing is moved or renamed; new albums still go to the folder named the current way. Desktop and Android.
 
