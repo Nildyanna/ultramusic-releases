@@ -1,5 +1,9 @@
 # UltraMusic Changelog
 
+## v2.10.2
+- **A folder named after an alias or side project is now recognised through its albums.** "Dee Gees" (a Foo Fighters side project) has no artist page on YouTube Music, only the album *Dee Gees: Hail Satin / Foo Fighters: Live*, credited to "Dee Gees" under Foo Fighters' artist id. The scan found no artist of that name, offered the similar-sounding "Bee Gees" (86 %), and when that was skipped it kept skipping the folder. Now, when no artist page has the folder's name, the scan looks for albums that YouTube Music credits to exactly that name, found through the albums already in the folder, and checks the folder against those albums only; it never scans the whole discography of the artist behind the credit, which would list a whole catalogue against a folder holding one album. The log says so ("YouTube Music has no artist page under that name, but it credits 1 album(s) to it"). Only when no album is credited to the name does it still ask which artist it is. Desktop and Android.
+- **The throttling line now says which search it was** ("[search 'Yoü And I']" instead of "[search]"), so a run of them can be traced to what the app was looking for. Desktop and Android.
+
 ## v2.10.1
 - **The background picture now fits the visible area exactly, with nothing to scroll.** On a display with scaling above 100 % (150 % on a wide screen) the picture was drawn 1.5 times too big: it overflowed into a scrollbar and only a zoomed-in middle part of it showed, with the sides cut off. It is now drawn at exactly the size of the visible list area (cut to fill, never padded with bars or stretched), so as much of the picture shows as the shape of the window allows; on a very wide window that is a band across the middle, on a taller one more of it. Desktop.
 
