@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.10.1
+- **The background picture now fits the visible area exactly, with nothing to scroll.** On a display with scaling above 100 % (150 % on a wide screen) the picture was drawn 1.5 times too big: it overflowed into a scrollbar and only a zoomed-in middle part of it showed, with the sides cut off. It is now drawn at exactly the size of the visible list area (cut to fill, never padded with bars or stretched), so as much of the picture shows as the shape of the window allows; on a very wide window that is a band across the middle, on a taller one more of it. Desktop.
+
 ## v2.10.0
 - **New: a muted background picture of your choice.** Pick any picture with **Picture...** (next to the new **Background artwork** checkbox in the settings row) and it is shown faded behind the app's results. On desktop it fills the results area while nothing is listed and steps aside as soon as results appear, because the panels on top of it are opaque; on Android it sits faded behind the whole list. The picture is copied into the app's own data folder as `background.jpg`, scaled down to at most 1600 px, so the original can move or be deleted; dropping your own `background.jpg` into that folder works too. It is blended about 80 % into the app's dark colour with a slight blur, so text stays easy to read, and it is cut to fill the area, never stretched. Untick the checkbox to turn it off. A missing or damaged picture is simply not shown. No picture is bundled with the app. Desktop and Android.
 
