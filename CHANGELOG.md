@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.10.5
+- **The background picture is no longer faded.** The picture was blended 80 % into the window colour, which washed it out; it is now shown at full strength (with only the slight softening kept). Desktop and Android.
+
 ## v2.10.4
 - **The throttling line now says which region's catalog it was asking.** Looking for the right-length version of a track asks this region's catalog and then up to three others, one search each, with the same query; when YouTube Music throttled them, the log showed the same line four times ("try 2 of 3" each, because each search has its own counter), which looked like one search stuck in a loop. It now reads, for example, "[search 'Queen In the Lap of the Gods...Revisited' in the GB catalog]". Desktop and Android.
 
