@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.10.0
+- **New: a muted background picture of your choice.** Pick any picture with **Picture...** (next to the new **Background artwork** checkbox in the settings row) and it is shown faded behind the app's results. On desktop it fills the results area while nothing is listed and steps aside as soon as results appear, because the panels on top of it are opaque; on Android it sits faded behind the whole list. The picture is copied into the app's own data folder as `background.jpg`, scaled down to at most 1600 px, so the original can move or be deleted; dropping your own `background.jpg` into that folder works too. It is blended about 80 % into the app's dark colour with a slight blur, so text stays easy to read, and it is cut to fill the area, never stretched. Untick the checkbox to turn it off. A missing or damaged picture is simply not shown. No picture is bundled with the app. Desktop and Android.
+
 ## v2.9.4
 - **After "Carry on with your last download?" the window no longer disappears behind other windows.** After an in-app update the installer starts the app, and Windows does not give a program started that way the foreground; when the question was answered the main window was left behind other windows, so the program looked as if it had vanished while the download carried on in the background (the log showed it resuming and downloading). The window is now brought to the front before the question and again after it is answered (restoring it first if it was minimized), and the status bar says "Resuming the last download: N album(s)...". The same raise is applied to the weekly "new releases" question. Desktop.
 
