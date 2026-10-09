@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.7.0
+- **A greyed-out track is only replaced by a recording with an identical title.** v2.5.1 accepted any same-length recording of the same song, so a track could be filled in from a differently labelled version: "My Journey's End" from "My Journey's End (2025 Mix)", "Love Will Keep Us Alive" from the "(1999 Remaster)", a "Trust Me (Dialogue)" clip from the song "Trust Me". The title must now be the same once case, punctuation and "(feat. ...)" credits are ignored (so "Walk This Way" still finds "Walk This Way (feat. Aerosmith)"); a mix, remaster, live or demo label makes it a different title and the track stays greyed out. If the first search hit is a labelled version, the next results are still checked for an identical one. Desktop and Android.
+
 ## v2.6.1
 - **Re-checking greyed-out tracks no longer searches for tracks that are already on disk.** A second pass of "Look for greyed-out tracks elsewhere" looked up every track an album lists with no video again, including the ones an earlier pass had already downloaded (26 of them for one soundtrack), spending a YouTube search on each before finding the files were there. Now only the greyed-out tracks that are still missing from the album folder are searched for. Desktop and Android.
 
