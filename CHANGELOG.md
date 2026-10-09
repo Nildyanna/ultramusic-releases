@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.9.3
+- **Retries are now logged, so a slow run can be seen to be throttled.** When a YouTube Music lookup comes back empty, is rate-limited or hits a network problem and the app waits before asking again, the log now says so: "⏳ YouTube Music answered with nothing (it is throttling this connection) [get_album]; waiting 4 s, then asking again (try 2 of 3)." It names what happened (an empty reply, a rate limit or a network problem), which call it was, how long the wait is and which try comes next, in both apps. Before, these waits were silent, and a throttled run looked like a slow one. Desktop and Android.
+
 ## v2.9.2
 - **Every YouTube Music lookup now asks again when the reply is empty, and says what is happening if it still fails.** A search could end with "Search Error: Expecting value: line 1 column 1 (char 0)": that is YouTube Music answering with nothing, which it does for some requests when it is rate-limiting a connection, and it hits one search type and not another within the same minute. v2.3.2 added retries only for album and counterpart lookups; search, artist pages, albums, playlists and every other lookup in both apps now go through one client that waits 2 s and then 6 s and asks again on an empty reply, a rate limit or a network hiccup (other errors are not retried). If it still fails, the message reads "YouTube Music didn't answer (an empty reply, usually a temporary rate limit on this connection). Wait a minute and try again." instead of the raw error. Desktop and Android.
 
