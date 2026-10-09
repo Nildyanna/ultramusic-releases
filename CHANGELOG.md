@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.9.4
+- **After "Carry on with your last download?" the window no longer disappears behind other windows.** After an in-app update the installer starts the app, and Windows does not give a program started that way the foreground; when the question was answered the main window was left behind other windows, so the program looked as if it had vanished while the download carried on in the background (the log showed it resuming and downloading). The window is now brought to the front before the question and again after it is answered (restoring it first if it was minimized), and the status bar says "Resuming the last download: N album(s)...". The same raise is applied to the weekly "new releases" question. Desktop.
+
 ## v2.9.3
 - **Retries are now logged, so a slow run can be seen to be throttled.** When a YouTube Music lookup comes back empty, is rate-limited or hits a network problem and the app waits before asking again, the log now says so: "⏳ YouTube Music answered with nothing (it is throttling this connection) [get_album]; waiting 4 s, then asking again (try 2 of 3)." It names what happened (an empty reply, a rate limit or a network problem), which call it was, how long the wait is and which try comes next, in both apps. Before, these waits were silent, and a throttled run looked like a slow one. Desktop and Android.
 
