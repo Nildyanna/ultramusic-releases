@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.6.1
+- **Re-checking greyed-out tracks no longer searches for tracks that are already on disk.** A second pass of "Look for greyed-out tracks elsewhere" looked up every track an album lists with no video again, including the ones an earlier pass had already downloaded (26 of them for one soundtrack), spending a YouTube search on each before finding the files were there. Now only the greyed-out tracks that are still missing from the album folder are searched for. Desktop and Android.
+
 ## v2.6.0
 - **New: look for greyed-out tracks elsewhere, for the whole collection.** v2.5.1 looks for a track an album lists with no video as a song of another release, but only when that album is processed, and an album missing only greyed-out tracks counts as complete, so albums from earlier runs were never revisited. The Skipped tracks window (desktop) and popup (Android) now have a button, **Look for greyed-out tracks elsewhere (N)**, that runs every album with greyed-out tracks on record (the count is the tracks): each is searched for as a song of another release by its own artist, title and listed length, and downloaded when a strict match is found; the rest stay as they are. It asks YouTube Music about every one of them, so it takes a while; Pause and Stop work as in any download. Desktop and Android.
 
