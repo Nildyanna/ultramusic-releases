@@ -1,5 +1,51 @@
 # UltraMusic Changelog
 
+## v2.16.0
+- **The download queue can now hold particular tracks, not only whole albums.** A queued entry can name just the tracks wanted from an album and, for a track that failed or is greyed out on the album's own release, another upload to fetch it from. UltraMusic looks the album up once and fetches only those tracks, so nothing else is scanned again. Saved with the queue, so a restart carries on with them. Nothing new on screen yet: the ARMGDDN backfill tools use it to retry tracks. The shared download code is in the phone app too, but no phone screen uses it yet.
+
+## v2.15.4
+- **"Greatest Hits" is no longer on the built-in exclude list.** The list named "Greatest Hits" as a word to skip; it is removed so those albums are never filtered out by that word. The other keywords ("best of", "collection", "compilation" and so on) still apply. Shared with the phone app.
+
+## v2.15.3
+- **Linux AppImage: the search result list now draws.** The AppImage was built without a part of the Pillow imaging library that the result rows need, so after a search the list stayed empty and the log showed "No module named 'PIL._tkinter_finder'". The build now includes it. Desktop only; the Windows installer and the `.deb` were not affected.
+
+## v2.15.2
+- **New: a Linux AppImage.** `UltraMusic-2.15.2-x86_64.AppImage` runs on any Linux distribution without an install step, including Arch and CachyOS where the `.deb` could not be converted. It needs the system's `ffmpeg` (Arch / CachyOS: `sudo pacman -S ffmpeg`). Built by `tools/build_appimage.sh` (in WSL on Windows). The `.deb` is still published for Debian / Ubuntu. Desktop only; the phone app is unchanged.
+
+## v2.15.1
+- **The greyed-out search no longer promises "a minute or two".** The log now says what it is doing ("looking for the same recordings on other releases and in other regions") without a time estimate, since a search that finds nothing can finish in seconds. Desktop and Android.
+
+## v2.15.0
+- **A wrong-length track now says why it was refused.** The batch summary read "2 x wrong length: Ns vs Ns expected". When the search for another version finished and found none, it now reads "no other version of this length found: 246s vs 303s expected", and the log says that YouTube Music has no other version in any region searched, so the file is most likely a different cut of the song. A search that failed (a network or rate-limit problem) still reads "wrong length" without the claim.
+- **A version that is too far from the album's length can be accepted by you.** Such a version (for example 246 s where the album lists 303 s) was rejected and thrown away. It is now kept as a *near match* and listed under **Skipped / Owned → Skipped tracks → Near matches** with its artist, album, and how far off it is. **Accept** downloads that version into the album, skipping only the length check for that one video; nothing else is accepted. The app still never takes such a version on its own. Desktop only for now: the phone app keeps rejecting these until its next build.
+
+## v2.14.0
+- **A download requested while another is running now waits in a queue instead of running alongside it.** Before, clicking Download on another album (or Download Selected, Retry failed, Resume, an import) while a download was in progress started a second download at the same time. The two shared the Stop button, the pause and the queue record, so a second click could cancel a Stop you had just pressed, and both could fetch the same album. Now the new request is queued ("⏳ Queued 'Album': it starts when the current download finishes"), and queued downloads start one after another, in the order asked. Stop ends the running download and drops everything still queued (logged as "Stopped: N queued download(s) were dropped"). Desktop and Android.
+- **Limitation:** a queued download is not written to the resume record until it starts, so if the app is closed before it starts, that queued download is not offered again. The download that is running is unaffected.
+
+## v2.13.0
+- **An album's other tracks no longer wait while a greyed-out track is searched for.** Tracks listed with no video are looked for on other releases and in other regions (one search per region, seconds each, over a minute for an album with many of them). That search ran first, before any track of the album started, so the whole album waited for it. Now the album starts downloading its available tracks at once, the searches run on two background threads, and a track whose substitute is found joins the download queue at that moment; one that is not found is reported as unavailable, as before. An album that is otherwise complete (nothing else to download) is still searched first, since there is nothing to overlap it with. The same identical-title and same-act rules apply, and Stop interrupts the searches. Desktop and Android.
+
+## v2.12.1
+- **The app no longer looks hung at the end of an album while the next one is being prepared.** With albums overlapping (v2.11.0), the next album's lookup ran on the same thread that reports finished albums, so when that album had many greyed-out tracks (a 27-track live album: about 80 seconds of searching other regions) the album before it sat at "Track 6/6" with a silent log for over a minute. The lookup now runs on its own thread: a finished album is reported the moment its tracks are done. Desktop and Android.
+- **The search for greyed-out tracks says what it is doing and Stop works during it.** It logs "looking for the same recordings on other releases and in other regions. This can take a minute or two", shows that in the status line, and checks Stop between tracks instead of finishing the whole search first.
+
+## v2.12.0
+- **Picture... tells you the exact size to make the picture.** Before the file chooser opens, a box gives the size in pixels that fills the results area exactly when the window is maximized on your display at your scaling, its shape, and what happens at any other size (for example "make it 3322 × 627 pixels, 5.30:1, a wide strip; your display is 3440 × 1440 at 150 % scaling"). The size is measured on the real window, not estimated from the display size. On Android the same size for the phone's current orientation is shown in the status line.
+
+## v2.11.2
+- **Updated the YouTube Music library (ytmusicapi 1.12.2 → 1.12.3)** in the desktop app, the Linux package and the Android build. Nothing else in the app changed; the update keeps the YouTube Music lookups current.
+
+## v2.11.1
+- **A self-titled album no longer claims another release's folder.** The 2006 album *Pearl Jam* was matched to the folder `Pearl Jam Twenty Original Motion Picture Soundtrack` (29 live tracks) because the folder's name starts with the album's name, and the word "Original" made it look like an edition label, so the album was skipped as "a different edition" and never downloaded. A folder that only starts with the album's name is now treated as another release when what follows contains real words that are not an edition label ("Twenty", "Motion Picture", "Soundtrack"), its files cannot be renumbered into this album and fewer than half of the album's titles are in it: the album gets its own folder and the other folder is left alone. A "(Deluxe Edition)" folder with different tracks is still protected, as before.
+- **The end-of-run list of skipped editions is short.** It repeated every per-track difference already shown when the album was skipped; it now names the album and the file counts only. Desktop and Android.
+
+## v2.11.0
+- **Downloads no longer pause between albums.** A batch used to finish every track of an album, then look up the next album (its track list, the other-region searches for greyed-out tracks, the cover), and only then start downloading again, so the download workers sat idle at every album boundary. The next album is now looked up and planned while the current one's tracks download, and its tracks join the same worker pool right behind them. The number of simultaneous downloads is unchanged (same pool), so this does not send more requests at once. Safety rules: at most two albums are in flight; an album that would use a folder another album is still filling (a deluxe edition of the same name, say) waits for it and is then planned against what is really on disk; each album's failed tracks stay with that album; the "stop after N albums" limit is exact, the GB limit and "pause after each artist" wait for the albums in flight to finish first; the progress bar and status line never go backwards while two albums overlap. Desktop; the Android app gets it in its next APK (the shared download code is the same).
+
+## v2.10.6
+- **The row of buttons across the top wraps instead of being cut off.** On a large display with display scaling (a 4K screen at 250 %) the eleven header buttons were wider than the window, so the left-most ones ("Provide Cookies", "Retag Artist") were squeezed against the edge and their text clipped. The buttons now lay out left to right and start a new row when the next one would not fit, at any window width and scaling. Desktop only (the Android layout is separate and unaffected).
+
 ## v2.10.5
 - **The background picture is no longer faded.** The picture was blended 80 % into the window colour, which washed it out; it is now shown at full strength (with only the slight softening kept). Desktop and Android.
 
