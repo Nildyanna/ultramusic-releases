@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.16.1
+- **A queued track that is greyed out is now fetched even when its album is already on your drive.** A queue entry that names a track and another upload to fetch it from was skipped when the album's folder counted as "complete" only because that track is greyed out on the album's own release ("already complete, 14 of 16 tracks on disk"). The album is now carried on with and the track is fetched from the other upload; a greyed-out track that is already on disk is still left alone. Shared with the phone app.
+
 ## v2.16.0
 - **The download queue can now hold particular tracks, not only whole albums.** A queued entry can name just the tracks wanted from an album and, for a track that failed or is greyed out on the album's own release, another upload to fetch it from. UltraMusic looks the album up once and fetches only those tracks, so nothing else is scanned again. Saved with the queue, so a restart carries on with them. Nothing new on screen yet: the ARMGDDN backfill tools use it to retry tracks. The shared download code is in the phone app too, but no phone screen uses it yet.
 
