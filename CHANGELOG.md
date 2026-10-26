@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.16.4
+- **A greyed-out track is no longer treated as unavailable when its alternate-source lookup failed.** Catalog request errors or missing search metadata now leave the track eligible for a later retry. Album results distinguish tracks still missing locally from searches that did not complete, instead of saying the album is complete. Desktop and Android.
+
 ## v2.16.3
 - **A YouTube upload with no usable audio format no longer makes UltraMusic retry that same video three times.** It now searches for the same recording using a strict title, artist and duration match, then tries one alternate upload. This fixes cases like Scorpions' *Mind Like A Tree*, where YouTube Music has the official 5:35 recording but the album's selected video exposes no downloadable format. Desktop and Android.
 
