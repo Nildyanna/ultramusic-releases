@@ -1,5 +1,10 @@
 # UltraMusic Changelog
 
+## v2.16.3
+- **A YouTube upload with no usable audio format no longer makes UltraMusic retry that same video three times.** It now searches for the same recording using a strict title, artist and duration match, then tries one alternate upload. This fixes cases like Scorpions' *Mind Like A Tree*, where YouTube Music has the official 5:35 recording but the album's selected video exposes no downloadable format. Desktop and Android.
+
+## v2.16.2
+- **YouTube Music throttling no longer makes concurrent retries stampede the catalog.** When a lookup gets an empty or rate-limited response, UltraMusic briefly cools down that region's client and spaces follow-up requests by 250 ms. Successful lookups remain concurrent, and the normal retry waits are unchanged. The shared behavior applies to desktop and Android.
 ## v2.16.1
 - **A queued track that is greyed out is now fetched even when its album is already on your drive.** A queue entry that names a track and another upload to fetch it from was skipped when the album's folder counted as "complete" only because that track is greyed out on the album's own release ("already complete, 14 of 16 tracks on disk"). The album is now carried on with and the track is fetched from the other upload; a greyed-out track that is already on disk is still left alone. Shared with the phone app.
 
