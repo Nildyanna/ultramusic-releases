@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.16.5
+- **Donated-library track filenames with an artist prefix now match correctly.** Files such as `01 - Massive Attack - Protection.mp3` are compared against the track title after removing the prefix only when it matches the containing artist folder. This prevents correct albums from being mislabeled as different editions, while unrelated titles remain protected. Desktop and Android.
+
 ## v2.16.4
 - **A greyed-out track is no longer treated as unavailable when its alternate-source lookup failed.** Catalog request errors or missing search metadata now leave the track eligible for a later retry. Album results distinguish tracks still missing locally from searches that did not complete, instead of saying the album is complete. Desktop and Android.
 
