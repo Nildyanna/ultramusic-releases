@@ -1,5 +1,22 @@
 # UltraMusic Changelog
 
+## v2.18.0
+- **Queue more downloads while one is running.** New selections wait in order, and unfinished albums and selected songs are saved for the next launch on desktop and Android.
+- **Ask when YouTube starts throttling.** Downloads pause and offer a choice to stop or continue. Stopping keeps the affected album and later queued work for the next launch.
+- **Show artist changes in the log.** The download log now announces each artist as its releases are reached.
+
+## v2.17.1
+- **A new album joins the artist folder the library already has, however YouTube Music spells the artist.** UltraMusic named the folder from YouTube's spelling, so an artist the library files as "Huey Lewis & The News" or "Weird Al Yankovic" could get a second folder called "Huey Lewis and The News" or "'Weird Al' Yankovic" (and, with it, a second artist in Plex and on the site). It now treats "&" and "and", a leading "The", quotes and apostrophes as the same name, files the album under the existing folder exactly as it is spelled there, and writes that spelling into the album-artist tag. A folder that does not exist yet is still created from YouTube's spelling. Desktop and Android (shared code).
+
+## v2.17.0
+- **Tracks YouTube refused only because it was throttling are now tried again automatically.** When a track is turned down during a throttle, UltraMusic waits 2 minutes for YouTube to calm down (the other downloads wait too) and asks for just those tracks again, then once more after 5 minutes, before the album is reported. Before, they were left as "try again later" and had to wait for the next run. Tracks that are still refused after that stay missing and are never counted as removed. Desktop and Android (shared download code).
+- **Throttled lookups and downloads wait longer before giving up.** A refused download now waits 15 s, then 1 minute (it was 8 s and 16 s), a burst of "unavailable" answers pauses everything for 90 s (it was 30 s), and a catalog lookup that gets an empty answer is asked again after 2 s, 6 s, 20 s and 1 minute (it was 2 s and 6 s). A throttle usually lasts a minute or more, so the short waits were burning through the tries while it was still active.
+- **Importing a long list no longer trips YouTube's throttle.** The lookups for a pasted or imported song list now run two at a time with a short pause between them (they were six at once with no pause), and a list of more than 150 lines asks first, with a rough time estimate and a suggestion to split it.
+- **"Stop after N albums / N GB" and "Pause after each artist" have their own row,** so they are no longer pushed off the right edge on a large screen or at a high display scale.
+
+## v2.16.6
+- **Library Doctor no longer moves things outside the library, and never moves a whole artist folder.** Duplicate-album and tidy moves put their quarantine folder *beside* the library (in the folder above it), so a quarantined artist could end up outside the music folder. The quarantine folder is now inside the library. A move of a whole artist folder (or of anything directly in the library) is refused, and only album folders and the files inside them move. Desktop and Android.
+
 ## v2.16.5
 - **Donated-library track filenames with an artist prefix now match correctly.** Files such as `01 - Massive Attack - Protection.mp3` are compared against the track title after removing the prefix only when it matches the containing artist folder. This prevents correct albums from being mislabeled as different editions, while unrelated titles remain protected. Desktop and Android.
 
