@@ -1,5 +1,10 @@
 # UltraMusic Changelog
 
+## v2.18.1
+- **Avoid duplicate albums filed under another credited artist.** Downloads use the saved location for the same release ID, and can recognize a complete imported copy using its credited artist and matching track titles. Ambiguous or partial possible copies are left for review. Desktop and Android.
+- **Keep scan results tied to the current library.** Saved locations from another library no longer hide missing albums.
+- **Reduce repeated catalog lookups during a scan.** A release listed by multiple artists needs only one track-count lookup per scan.
+
 ## v2.18.0
 - **Queue more downloads while one is running.** New selections wait in order, and unfinished albums and selected songs are saved for the next launch on desktop and Android.
 - **Ask when YouTube starts throttling.** Downloads pause and offer a choice to stop or continue. Stopping keeps the affected album and later queued work for the next launch.
