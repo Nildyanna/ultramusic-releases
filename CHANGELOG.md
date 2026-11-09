@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.19.3
+- **Explain why a download was paused.** Throttle prompts and logs identify the type of response without exposing URLs or cookies, and a generic webpage network error no longer triggers a misleading throttling warning. Desktop and Android.
+
 ## v2.19.2
 - **Avoid flooding YouTube Music during artist and library checks.** Album track-count lookups run one at a time with spacing, without stacking a second retry loop on top of the client retries. Scans stop after a transient catalog failure and preserve unchecked results for later; downloads keep their existing concurrency. Desktop and Android.
 
