@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.19.2
+- **Avoid flooding YouTube Music during artist and library checks.** Album track-count lookups run one at a time with spacing, without stacking a second retry loop on top of the client retries. Scans stop after a transient catalog failure and preserve unchecked results for later; downloads keep their existing concurrency. Desktop and Android.
+
 ## v2.19.1
 - **Keep specialized backfill recovery queues separate.** A backfill launcher can use its own recovery file, preventing an older installation from consuming entries whose verified filing artist it cannot understand.
 
