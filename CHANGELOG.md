@@ -1,5 +1,11 @@
 # UltraMusic Changelog
 
+## v2.19.1
+- **Keep specialized backfill recovery queues separate.** A backfill launcher can use its own recovery file, preventing an older installation from consuming entries whose verified filing artist it cannot understand.
+
+## v2.19.0
+- **Preserve a verified release filing artist.** A backfill queue can explicitly retain a verified album artist even when YouTube credits only performers; the choice survives a restart and is shared by desktop and Android. Ordinary artist-page downloads still require matching credits.
+
 ## v2.18.2
 - **Warn when different slots for the same song contain identical audio.** Before placing a new MP3 or FLAC, compare its encoded audio with matching songs already in the album, ignoring tags. If the bytes match, keep the existing file and report the new track as needing another source. Concurrent tracks are checked safely on desktop and Android.
 
