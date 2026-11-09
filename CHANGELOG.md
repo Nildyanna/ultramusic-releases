@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.19.4
+- **Pace alternate-source catalog lookups.** Track workers share a single spaced search slot, including when an upload has no usable audio format, and a transient catalog failure stops that regional search rather than trying more regions. Incomplete searches remain retryable and are not reported as proof that a recording is missing. Desktop and Android.
+
 ## v2.19.3
 - **Explain why a download was paused.** Throttle prompts and logs identify the type of response without exposing URLs or cookies, and a generic webpage network error no longer triggers a misleading throttling warning. Desktop and Android.
 
