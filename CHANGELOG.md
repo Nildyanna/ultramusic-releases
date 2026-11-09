@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.19.5
+- **Keep downloading when an alternate-source search returns an unreadable response.** An ambiguous empty response no longer triggers a throttle prompt; the search remains inconclusive, alternate lookups cool down briefly, and other tracks continue. Confirmed HTTP 429 responses still pause immediately, including non-JSON responses. Desktop and Android.
+
 ## v2.19.4
 - **Pace alternate-source catalog lookups.** Track workers share a single spaced search slot, including when an upload has no usable audio format, and a transient catalog failure stops that regional search rather than trying more regions. Incomplete searches remain retryable and are not reported as proof that a recording is missing. Desktop and Android.
 
