@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.18.2
+- **Warn when different slots for the same song contain identical audio.** Before placing a new MP3 or FLAC, compare its encoded audio with matching songs already in the album, ignoring tags. If the bytes match, keep the existing file and report the new track as needing another source. Concurrent tracks are checked safely on desktop and Android.
+
 ## v2.18.1
 - **Avoid duplicate albums filed under another credited artist.** Downloads use the saved location for the same release ID, and can recognize a complete imported copy using its credited artist and matching track titles. Ambiguous or partial possible copies are left for review. Desktop and Android.
 - **Keep scan results tied to the current library.** Saved locations from another library no longer hide missing albums.
