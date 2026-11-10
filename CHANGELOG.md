@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.19.6
+- **Don't stop a batch on clusters of missing video IDs.** Generic "video unavailable" responses are treated as track-level outcomes; the app only pauses to ask about stopping when YouTube provides an explicit rate-limit signal. Tracks interrupted during alternate-upload downloads are now marked unfinished in the log. Desktop and Android.
+
 ## v2.19.5
 - **Keep downloading when an alternate-source search returns an unreadable response.** An ambiguous empty response no longer triggers a throttle prompt; the search remains inconclusive, alternate lookups cool down briefly, and other tracks continue. Confirmed HTTP 429 responses still pause immediately, including non-JSON responses. Desktop and Android.
 
