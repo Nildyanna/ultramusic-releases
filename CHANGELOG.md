@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v2.20.0
+- **Throttle prompt recommends stop or continue.** When YouTube may be throttling, the prompt now says which choice fits the circumstances and why: stop after an explicit rate-limit response a few minutes ago, or after a cool-down still fails; continue while downloads still succeed or when there is no rate-limit response yet (a 90-second cool-down, then retry). The recommended choice is highlighted. Clusters of "unavailable" videos now ask you instead of being ignored, so the warning and the behaviour match. Desktop and Android.
+
 ## v2.19.6
 - **Don't stop a batch on clusters of missing video IDs.** Generic "video unavailable" responses are treated as track-level outcomes; the app only pauses to ask about stopping when YouTube provides an explicit rate-limit signal. Tracks interrupted during alternate-upload downloads are now marked unfinished in the log. Desktop and Android.
 
