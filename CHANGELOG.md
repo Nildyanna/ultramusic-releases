@@ -1,5 +1,11 @@
 # UltraMusic Changelog
 
+## v3.0.0
+- **New window.** UltraMusic now opens in a new window built from HTML, replacing the old one. Everything the old window did is there: searching, artist pages, downloads with track picks, library scan with artist confirmation, Library Doctor, retag, import of song lists, retry and resume, skipped and owned albums, settings and region. The new window checks for updates when it opens and shows a banner with the download page; it does not install updates by itself. Desktop only.
+- **Browser cookies, kept fresh automatically.** When YouTube's cookies expire, the app now uses a browser cookie file or the signed-in browser where it can. For Chrome and Edge, a small browser extension sends fresh YouTube cookies to UltraMusic. Set it up once from the **Browser cookies setup** button: press **Set up the helper**, then load the extension folder in the browser's extensions page (Developer mode, Load unpacked). Desktop only.
+- **Artist albums show what is left.** The count under an artist's name follows the list as albums land in your library. An album downloaded to a folder other than the one its artist name suggests is counted where it was saved.
+- **Search defaults to Artist,** and the app remembers the last search type you chose.
+
 ## v2.20.0
 - **Throttle prompt recommends stop or continue.** When YouTube may be throttling, the prompt now says which choice fits the circumstances and why: stop after an explicit rate-limit response a few minutes ago, or after a cool-down still fails; continue while downloads still succeed or when there is no rate-limit response yet (a 90-second cool-down, then retry). The recommended choice is highlighted. Clusters of "unavailable" videos now ask you instead of being ignored, so the warning and the behaviour match. Desktop and Android.
 
