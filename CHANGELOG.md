@@ -1,5 +1,9 @@
 # UltraMusic Changelog
 
+## v3.0.2
+- **Update installs by itself.** The update banner in the window now downloads the new version, checks its signature, installs it and restarts UltraMusic, instead of opening the releases page. Desktop only.
+- **Fixed a startup crash in the installed app.** The optional diagnostics file was written into the install folder, which a normal user can't write to, so the window could fail to open. It is now written to the app's data folder, and the window opens even if it can't be written. Desktop only.
+
 ## v3.0.1
 - **Faster artist pages and fewer redraws.** The album list is redrawn once per finished album instead of twice, and each album folder is counted again only when it has changed, so the window no longer re-checks every album's status on the library drive each time. Desktop only.
 
