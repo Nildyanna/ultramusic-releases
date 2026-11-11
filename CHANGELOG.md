@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v3.0.1
+- **Faster artist pages and fewer redraws.** The album list is redrawn once per finished album instead of twice, and each album folder is counted again only when it has changed, so the window no longer re-checks every album's status on the library drive each time. Desktop only.
+
 ## v3.0.0
 - **New window.** UltraMusic now opens in a new window built from HTML, replacing the old one. Everything the old window did is there: searching, artist pages, downloads with track picks, library scan with artist confirmation, Library Doctor, retag, import of song lists, retry and resume, skipped and owned albums, settings and region. The new window checks for updates when it opens and shows a banner with the download page; it does not install updates by itself. Desktop only.
 - **Browser cookies, kept fresh automatically.** When YouTube's cookies expire, the app now uses a browser cookie file or the signed-in browser where it can. For Chrome and Edge, a small browser extension sends fresh YouTube cookies to UltraMusic. Set it up once from the **Browser cookies setup** button: press **Set up the helper**, then load the extension folder in the browser's extensions page (Developer mode, Load unpacked). Desktop only.
