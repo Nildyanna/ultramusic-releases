@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v3.0.8
+- **A new artist appears in the left pane while downloading.** The artist list refreshes as tracks land, so a new artist no longer needs a restart to show up. Desktop only.
+
 ## v3.0.7
 - **An artist search says when no artist has the name typed.** YouTube Music ranks near-miss spellings first ("Dee Gees" shows Bee Gees), so the results now note the closest match. Desktop only.
 
