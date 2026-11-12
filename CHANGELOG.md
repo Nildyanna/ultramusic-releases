@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v3.0.7
+- **An artist search says when no artist has the name typed.** YouTube Music ranks near-miss spellings first ("Dee Gees" shows Bee Gees), so the results now note the closest match. Desktop only.
+
 ## v3.0.6
 - **The log is no longer flooded with "(slow)" lines.** A slow window call is logged at most once a minute, so a library lookup that runs during a download doesn't repeat the same line. Desktop only.
 - **The status line stays on the current task.** It shows the progress line during a download; log lines go to the log only, so the status no longer jumps back and forth. Desktop only.
