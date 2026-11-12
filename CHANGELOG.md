@@ -1,5 +1,8 @@
 # UltraMusic Changelog
 
+## v3.0.9
+- **An edition without its name in the folder is not downloaded twice.** "The Rising Tied (Deluxe Edition)" with 19 tracks already in "The Rising Tied" now downloads only the missing track, not all 20 again. Desktop and Android.
+
 ## v3.0.8
 - **A new artist appears in the left pane while downloading.** The artist list refreshes as tracks land, so a new artist no longer needs a restart to show up. Desktop only.
 
