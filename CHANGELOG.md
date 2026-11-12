@@ -1,5 +1,9 @@
 # UltraMusic Changelog
 
+## v3.0.6
+- **The log is no longer flooded with "(slow)" lines.** A slow window call is logged at most once a minute, so a library lookup that runs during a download doesn't repeat the same line. Desktop only.
+- **The status line stays on the current task.** It shows the progress line during a download; log lines go to the log only, so the status no longer jumps back and forth. Desktop only.
+
 ## v3.0.5
 - **Throttling is detected from empty replies too.** When YouTube Music answers five times in a row with empty or unreadable replies and nothing in between succeeds, the app now asks whether to stop or continue, as it does for an explicit rate limit. Desktop and Android.
 - **Resume no longer duplicates the unfinished list.** Resuming an unfinished download replaces that list, and each album is counted and downloaded once even if the saved list held it twice. Desktop only.
