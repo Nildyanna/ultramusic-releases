@@ -1,5 +1,12 @@
 # UltraMusic Changelog
 
+## v3.0.5
+- **Throttling is detected from empty replies too.** When YouTube Music answers five times in a row with empty or unreadable replies and nothing in between succeeds, the app now asks whether to stop or continue, as it does for an explicit rate limit. Desktop and Android.
+- **Resume no longer duplicates the unfinished list.** Resuming an unfinished download replaces that list, and each album is counted and downloaded once even if the saved list held it twice. Desktop only.
+- **Retry and resume keep each album's exclusions and unfinished albums are not doubled.** Retried and resumed albums keep the tracks they were left with. Desktop only.
+- **An artist page says when the search failed.** It shows the search error instead of "Couldn't find this artist" when YouTube Music doesn't answer. Desktop only.
+- **Failed alternate-source searches say why.** The log shows the underlying error instead of only the error type. Desktop and Android.
+
 ## v3.0.4
 - **Retry and resume don't re-download what you left out.** Retried and resumed albums kept only their album name, so tracks already in the library, or deliberately unticked, were fetched again. They now keep their exclusions. Desktop only.
 - **Library labels follow each track.** "In library" and "partial" labels in the album list update as each track lands, not only when a whole album finishes. Desktop only.
