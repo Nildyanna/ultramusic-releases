@@ -1,5 +1,9 @@
 # UltraMusic Changelog
 
+## v3.0.4
+- **Retry and resume don't re-download what you left out.** Retried and resumed albums kept only their album name, so tracks already in the library, or deliberately unticked, were fetched again. They now keep their exclusions. Desktop only.
+- **Library labels follow each track.** "In library" and "partial" labels in the album list update as each track lands, not only when a whole album finishes. Desktop only.
+
 ## v3.0.3
 - **A stuck conversion no longer freezes a download.** The ffmpeg step that converts a downloaded track had no time limit, so a hung conversion could stall its download for minutes. Conversions running past 150 seconds are now stopped and the track is retried. Desktop and Android.
 
